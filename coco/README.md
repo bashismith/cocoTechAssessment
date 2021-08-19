@@ -28,11 +28,12 @@ Notes:
 2. Create a clear & well organized component structure
 3. Explain how you manage state and why you chose this method
 
-Frontend Technical Assessment 2
+
 4. Create a dynamically refreshing web application that never shows data older than
 10 seconds
 5. Using the following rest api and typescript types:
 
+``` shell
 /*
 https://frontend-project-dot-cyan-dev.uc.r.appspot.com
 [GET] /:
@@ -40,11 +41,13 @@ response: {status: "healthy"}
 [GET] /deliveries:
 response: ApiResponse<Delivery[]>
 */
+
 type ApiResponse<T> = {
 success: boolean;
 data?: T;
 error?: string;
 };
+
 type Coordinate = [number, number];
 enum RobotIssue {
 LOW_BATTERY = "low_battery",
@@ -53,36 +56,38 @@ HW_ISSUE = "hw_issue",
 FLIPPED = "flipped",
 IMMOBILE = "immobile",
 }
+
 interface Robot {
 id: string;
 name: string;
 issue: RobotIssue;
 }
+
 enum TripStatus {
 ACTIVE = "active",
 STALLED = "stalled",
 CANCELLED = "cancelled",
 COMPLETED = "completed",
 }
+
 interface Trip {
 id: string;
 created_at: Date;
 updated_at: Date;
 source: Coordinate;
 destination: Coordinate;
-
-Frontend Technical Assessment 3
-
 location: Coordinate;
 status: TripStatus;
 robot: Robot;
 }
+
 interface Merchant {
 id: string;
 name: string;
 location: Coordinate;
 address: string;
 }
+
 interface Customer {
 id: string;
 name: string;
@@ -90,11 +95,13 @@ phone_number: string;
 location: Coordinate;
 address: string;
 }
+
 enum DeliveryStage {
 AT_MX = "at_merchant",
 ON_TRIP = "on_trip",
 AT_CX = "at_customer",
 }
+
 interface Delivery {
 id: string;
 created_at: Date;
@@ -103,10 +110,12 @@ merchant: Merchant;
 customer: Customer;
 trip: Trip;
 }
+
 enum UserRole {
 DISPATCH = "dispatch",
 FIELD_OP = "field_op",
 }
+
 interface User {
 id: string;
 name: string;
@@ -114,3 +123,4 @@ role: UserRole;
 username: string;
 phone_no: string;
 }
+```
