@@ -1,7 +1,7 @@
 import React from 'react';
 import DeliveriesContainer from './DeliveriesContainer'
 
-const App = () => {
+const App: React.FC  = () => {
   return (
     <div className="App">
       <DeliveriesContainer/>

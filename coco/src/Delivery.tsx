@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 
-const Delivery = (props) => {
-  const [custBtn, setCust] = useState(0);
-  const [merchBtn, setMerch] = useState(0);
-  const expandCustomerInfo = (e) => {
+const Delivery= (props:any) => {
+  const [custBtn, setCust] = useState<number>(0);
+  const [merchBtn, setMerch] = useState<number>(0);
+  const expandCustomerInfo = () => {
     custBtn === 0 ? setCust(1) : setCust(0)
   }
-  const expandMerchantInfo = (e) => {
+  const expandMerchantInfo = () => {
     merchBtn === 0 ? setMerch(1) : setMerch(0)
   }
 
