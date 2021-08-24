@@ -1,11 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const Delivery = (props) => {
+  const [custBtn, setCust] = useState(0);
+  const [merchBtn, setMerch] = useState(0);
+  const expandCustomerInfo = (e) => {
+    custBtn === 0 ? setCust(1) : setCust(0)
+  }
+  const expandMerchantInfo = (e) => {
+    merchBtn === 0 ? setMerch(1) : setMerch(0)
+  }
+
+
+
   return (
-    <div id={props.id} onClick={(e) => console.log(e.target)}>
-      <span>Customer: {props.customer}</span>
+    <div id={props.id} >
+      <span id="customer">Customer: {props.customer}<button style={{'marginLeft': '5px'}} onClick={expandCustomerInfo}>Info</button></span>
+      {(custBtn === 0) ? '': <ul><li>Customer address: {props.cusAddress}</li><li>Customer Phone Number: {props.cusPhone}</li></ul>}
       <br></br>
-      <span>Merchant: {props.merchant}</span>
+      <span id="merchant">Merchant: {props.merchant}<button style={{'marginLeft': '5px'}} onClick={expandMerchantInfo}>Info</button></span>
+      {(merchBtn === 0) ? '': <ul><li>Merchant address: {props.merchAddress}</li></ul>}
+      <br></br>
+      <span>Distance: {props.distance}</span>
+      <br></br>
+      <span>Running Time Of Delivery: {props.time}</span>
       <br></br>
       <span>Stage: {props.stage}</span>
       <br></br>

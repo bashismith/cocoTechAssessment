@@ -1,0 +1,3 @@
+Hello Coco Team,
+
+For this project I chose to manage state via react hooks.
