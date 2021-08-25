@@ -50,6 +50,7 @@ const DeliveriesContainer = () => {
     //round the number up for better readablility
     return Math.ceil(d * 0.6214) + ' mile(s)';
   }
+  //function for the running time
   function timeElapsed(startTime:number){
     const today = new Date();
     let currentTime:any = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
@@ -60,7 +61,10 @@ const DeliveriesContainer = () => {
     diff = diff.toString();
     return `${diff[0]} hrs ${diff[1]}${diff[2]} minutes ${diff[3]}${diff[4]} seconds`
   };
-
+  //function for if robot issue is null it will display no issues
+  function robotIssue(issue:string){
+    return issue ? issue : 'No Issues';
+  }
   for(let i in apiData){
     let createdTime = apiData[i].created_at.replace(/\D+/g, '').slice(6);
     //coordinates of customers and merchants
@@ -68,9 +72,11 @@ const DeliveriesContainer = () => {
     let cLon = apiData[i].customer.location[1];
     let mLat = apiData[i].merchant.location[0];
     let mLon = apiData[i].merchant.location[1];
+  //robot issue string
+    let rbtIs = apiData[i].trip.robot[0].issue;
     //trip is null when the delivery is still at merchant so robot is yet to be assigned
     if(apiData[i].trip){
-      deliveries.push(<Delivery key={i} id={apiData[i].customer.i} customer={apiData[i].customer.name} merchant={apiData[i].merchant.name} distance={getDistanceFromLatLon(cLat,cLon,mLat,mLon)} time={timeElapsed(createdTime)} stage={apiData[i].stage} robotName={apiData[i].trip.robot[0].name} robotId={apiData[i].trip.robot[0].id} robotIssue={apiData[i].trip.robot[0].issue}cusAddress={apiData[i].customer.address} cusPhone={apiData[i].customer.phone_number} merchAddress={apiData[i].merchant.address} merchPhone={apiData[i].merchant.phone_number}/>)
+      deliveries.push(<Delivery key={i} id={apiData[i].customer.i} customer={apiData[i].customer.name} merchant={apiData[i].merchant.name} distance={getDistanceFromLatLon(cLat,cLon,mLat,mLon)} time={timeElapsed(createdTime)} stage={apiData[i].stage} robotName={apiData[i].trip.robot[0].name} robotId={apiData[i].trip.robot[0].id} robotIssue={robotIssue(rbtIs)}cusAddress={apiData[i].customer.address} cusPhone={apiData[i].customer.phone_number} merchAddress={apiData[i].merchant.address} merchPhone={apiData[i].merchant.phone_number}/>)
     }else {
       deliveries.push(<Delivery key={i} id={apiData[i].customer.i} customer={apiData[i].customer.name} merchant={apiData[i].merchant.name} distance={getDistanceFromLatLon(cLat,cLon,mLat,mLon)} time={timeElapsed(createdTime)} stage={apiData[i].stage} robot='UNASSIGNED' cusAddress={apiData[i].customer.address} cusPhone={apiData[i].customer.phone_number} merchAddress={apiData[i].merchant.address} />)
     }
