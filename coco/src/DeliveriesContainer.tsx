@@ -1,5 +1,7 @@
 import React, {useState, useEffect, useRef } from 'react';
 import Delivery from './Delivery';
+import { ApiResponse } from './TypesAndInterfaces';
+
 
 const DeliveriesContainer = () => {
   const [apiData, setApiData] = useState<any>({});
@@ -68,7 +70,7 @@ const DeliveriesContainer = () => {
     let mLon = apiData[i].merchant.location[1];
     //trip is null when the delivery is still at merchant so robot is yet to be assigned
     if(apiData[i].trip){
-      deliveries.push(<Delivery key={i} id={apiData[i].customer.i} customer={apiData[i].customer.name} merchant={apiData[i].merchant.name} distance={getDistanceFromLatLon(cLat,cLon,mLat,mLon)} time={timeElapsed(createdTime)} stage={apiData[i].stage} robot={JSON.stringify(apiData[i].trip.robot[0])} cusAddress={apiData[i].customer.address} cusPhone={apiData[i].customer.phone_number} merchAddress={apiData[i].merchant.address} merchPhone={apiData[i].merchant.phone_number}/>)
+      deliveries.push(<Delivery key={i} id={apiData[i].customer.i} customer={apiData[i].customer.name} merchant={apiData[i].merchant.name} distance={getDistanceFromLatLon(cLat,cLon,mLat,mLon)} time={timeElapsed(createdTime)} stage={apiData[i].stage} robotName={apiData[i].trip.robot[0].name} robotId={apiData[i].trip.robot[0].id} robotIssue={apiData[i].trip.robot[0].issue}cusAddress={apiData[i].customer.address} cusPhone={apiData[i].customer.phone_number} merchAddress={apiData[i].merchant.address} merchPhone={apiData[i].merchant.phone_number}/>)
     }else {
       deliveries.push(<Delivery key={i} id={apiData[i].customer.i} customer={apiData[i].customer.name} merchant={apiData[i].merchant.name} distance={getDistanceFromLatLon(cLat,cLon,mLat,mLon)} time={timeElapsed(createdTime)} stage={apiData[i].stage} robot='UNASSIGNED' cusAddress={apiData[i].customer.address} cusPhone={apiData[i].customer.phone_number} merchAddress={apiData[i].merchant.address} />)
     }

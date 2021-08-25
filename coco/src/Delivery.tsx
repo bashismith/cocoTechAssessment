@@ -1,15 +1,18 @@
 import React, {useState} from 'react';
 
-const Delivery= (props:any) => {
+const Delivery = (props:any) => {
   const [custBtn, setCust] = useState<number>(0);
   const [merchBtn, setMerch] = useState<number>(0);
+  const [robotBtn, setRobot] = useState<number>(0);
   const expandCustomerInfo = () => {
     custBtn === 0 ? setCust(1) : setCust(0)
   }
   const expandMerchantInfo = () => {
     merchBtn === 0 ? setMerch(1) : setMerch(0)
   }
-
+  const expandRobotInfo = () => {
+    robotBtn === 0 ? setRobot(1) : setRobot(0)
+  }
 
 
   return (
@@ -26,7 +29,8 @@ const Delivery= (props:any) => {
       <br></br>
       <span>Stage: {props.stage}</span>
       <br></br>
-      <span>Robot: {props.robot}</span>
+      <span>Robot: {props.robotName}<button style={{'marginLeft': '5px'}} onClick={expandRobotInfo}>Info</button></span>
+      {(robotBtn === 0) ? '': <ul><li>Robot Id: {props.robotId}</li><li>Robot Issue: {props.robotIssue}</li></ul>}
       <br></br>
       <br></br>
     </div>
