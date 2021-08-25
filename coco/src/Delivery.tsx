@@ -18,10 +18,10 @@ const Delivery = (props:any) => {
   return (
     <div id={props.id} >
       <span id="customer">Customer: {props.customer}<button style={{'marginLeft': '5px'}} onClick={expandCustomerInfo}>Info</button></span>
-      {(custBtn === 0) ? '': <ul><li>Customer address: {props.cusAddress}</li><li>Customer Phone Number: {props.cusPhone}</li></ul>}
+      {(custBtn === 0) ? '': <ul><li>Customer ID: {props.id}</li><li>Customer address: {props.cusAddress}</li><li>Customer Phone Number: {props.cusPhone}</li></ul>}
       <br></br>
       <span id="merchant">Merchant: {props.merchant}<button style={{'marginLeft': '5px'}} onClick={expandMerchantInfo}>Info</button></span>
-      {(merchBtn === 0) ? '': <ul><li>Merchant address: {props.merchAddress}</li></ul>}
+      {(merchBtn === 0) ? '': <ul><li>Merchant ID: {props.merchantId}</li><li>Merchant address: {props.merchAddress}</li></ul>}
       <br></br>
       <span>Distance: {props.distance}</span>
       <br></br>
@@ -30,7 +30,7 @@ const Delivery = (props:any) => {
       <span>Stage: {props.stage}</span>
       <br></br>
       <span>Robot: {props.robotName}<button style={{'marginLeft': '5px'}} onClick={expandRobotInfo}>Info</button></span>
-      {(robotBtn === 0) ? '': <ul><li>Robot Id: {props.robotId}</li><li>Robot Issue: {props.robotIssue}</li></ul>}
+      {(robotBtn === 0) ? '': <ul><li>Robot ID: {props.robotId}</li><li>Robot Issue: {props.robotIssue}</li></ul>}
       <br></br>
       <br></br>
     </div>

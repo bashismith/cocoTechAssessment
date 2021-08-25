@@ -76,9 +76,9 @@ const DeliveriesContainer = () => {
     if(apiData[i].trip){
       //robot issue string
       let rbtIs = apiData[i].trip.robot[0].issue;
-      deliveries.push(<Delivery key={i} id={apiData[i].customer.i} customer={apiData[i].customer.name} merchant={apiData[i].merchant.name} distance={getDistanceFromLatLon(cLat,cLon,mLat,mLon)} time={timeElapsed(createdTime)} stage={apiData[i].stage} robotName={apiData[i].trip.robot[0].name} robotId={apiData[i].trip.robot[0].id} robotIssue={robotIssue(rbtIs)}cusAddress={apiData[i].customer.address} cusPhone={apiData[i].customer.phone_number} merchAddress={apiData[i].merchant.address} merchPhone={apiData[i].merchant.phone_number}/>)
+      deliveries.push(<Delivery key={i} id={apiData[i].customer.id} customer={apiData[i].customer.name} merchant={apiData[i].merchant.name} merchantId={apiData[i].merchant.id} distance={getDistanceFromLatLon(cLat,cLon,mLat,mLon)} time={timeElapsed(createdTime)} stage={apiData[i].stage} robotName={apiData[i].trip.robot[0].name} robotId={apiData[i].trip.robot[0].id} robotIssue={robotIssue(rbtIs)}cusAddress={apiData[i].customer.address} cusPhone={apiData[i].customer.phone_number} merchAddress={apiData[i].merchant.address} merchPhone={apiData[i].merchant.phone_number}/>)
     }else {
-      deliveries.push(<Delivery key={i} id={apiData[i].customer.i} customer={apiData[i].customer.name} merchant={apiData[i].merchant.name} distance={getDistanceFromLatLon(cLat,cLon,mLat,mLon)} time={timeElapsed(createdTime)} stage={apiData[i].stage} robot='UNASSIGNED' cusAddress={apiData[i].customer.address} cusPhone={apiData[i].customer.phone_number} merchAddress={apiData[i].merchant.address} />)
+      deliveries.push(<Delivery key={i} id={apiData[i].customer.id} customer={apiData[i].customer.name} merchant={apiData[i].merchant.name}  merchantId={apiData[i].merchant.id}  distance={getDistanceFromLatLon(cLat,cLon,mLat,mLon)} time={timeElapsed(createdTime)} stage={apiData[i].stage} robot='UNASSIGNED' cusAddress={apiData[i].customer.address} cusPhone={apiData[i].customer.phone_number} merchAddress={apiData[i].merchant.address} />)
     }
   }
 
