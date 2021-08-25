@@ -1,3 +1,3 @@
 Hello Coco Team,
 
-For this project I chose to manage state via react hooks.
+For this project I chose to manage state via react hooks in order to keep state more intuative and localized to the functional components that are utilizing said state. I also chose to utilize react hooks rather than redux in order to avoid extensive boilerplate set up in best interest for quick deplyoment.

@@ -1,91 +1,7 @@
-import React, {useState, useEffect, useRef }from 'react';
+import React, {useState, useEffect, useRef } from 'react';
 import Delivery from './Delivery';
 
 const DeliveriesContainer = () => {
-
-
-  type ApiResponse<T> = {
-    success: boolean;
-    data?: T;
-    error?: string;
-    };
-
-    type Coordinate = [number, number];
-    enum RobotIssue {
-    LOW_BATTERY = "low_battery",
-    SW_ISSUE = "sw_issue",
-    HW_ISSUE = "hw_issue",
-    FLIPPED = "flipped",
-    IMMOBILE = "immobile",
-    }
-
-    interface Robot {
-    id: string;
-    name: string;
-    issue: RobotIssue;
-    }
-
-    enum TripStatus {
-    ACTIVE = "active",
-    STALLED = "stalled",
-    CANCELLED = "cancelled",
-    COMPLETED = "completed",
-    }
-
-    interface Trip {
-    id: string;
-    created_at: Date;
-    updated_at: Date;
-    source: Coordinate;
-    destination: Coordinate;
-    location: Coordinate;
-    status: TripStatus;
-    robot: Robot;
-    }
-
-    interface Merchant {
-    id: string;
-    name: string;
-    location: Coordinate;
-    address: string;
-    }
-
-    interface Customer {
-    id: string;
-    name: string;
-    phone_number: string;
-    location: Coordinate;
-    address: string;
-    }
-
-    enum DeliveryStage {
-    AT_MX = "at_merchant",
-    ON_TRIP = "on_trip",
-    AT_CX = "at_customer",
-    }
-
-    interface Delivery {
-    id: string;
-    created_at: Date;
-    stage: DeliveryStage;
-    merchant: Merchant;
-    customer: Customer;
-    trip: Trip;
-    }
-
-    enum UserRole {
-    DISPATCH = "dispatch",
-    FIELD_OP = "field_op",
-    }
-
-    interface User {
-    id: string;
-    name: string;
-    role: UserRole;
-    username: string;
-    phone_no: string;
-    }
-
   const [apiData, setApiData] = useState<any>({});
   const renderCount = useRef<number>(1);
 
@@ -99,10 +15,12 @@ const DeliveriesContainer = () => {
   };
 
   useEffect(()=>{
+    //on first load call the api
     if(renderCount.current === 1){
       apiCall();
       renderCount.current = renderCount.current + 1;
     }
+    //every 10 seconds fetch for the updated data
     setInterval(() => {
       console.log('10 seconds')
       apiCall();
@@ -154,9 +72,7 @@ const DeliveriesContainer = () => {
     }else {
       deliveries.push(<Delivery key={i} id={apiData[i].customer.i} customer={apiData[i].customer.name} merchant={apiData[i].merchant.name} distance={getDistanceFromLatLon(cLat,cLon,mLat,mLon)} time={timeElapsed(createdTime)} stage={apiData[i].stage} robot='UNASSIGNED' cusAddress={apiData[i].customer.address} cusPhone={apiData[i].customer.phone_number} merchAddress={apiData[i].merchant.address} />)
     }
-
   }
-
 
   return (
     <div id="container">
