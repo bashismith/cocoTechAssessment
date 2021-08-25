@@ -6,7 +6,8 @@
   };
 
   export type Coordinate = [number, number];
-  enum RobotIssue {
+
+  export enum RobotIssue {
   LOW_BATTERY = "low_battery",
   SW_ISSUE = "sw_issue",
   HW_ISSUE = "hw_issue",
@@ -14,34 +15,35 @@
   IMMOBILE = "immobile",
   }
 
+
+  export enum TripStatus {
+    ACTIVE = "active",
+    STALLED = "stalled",
+    CANCELLED = "cancelled",
+    COMPLETED = "completed",
+  }
+
+  export interface Trip {
+    id: string;
+    created_at: Date;
+    updated_at: Date;
+    source: Coordinate;
+    destination: Coordinate;
+    location: Coordinate;
+    status: TripStatus;
+    robot: Robot;
+  }
+
   export interface Robot {
   id: string;
   name: string;
   issue: RobotIssue;
   }
-
-  export enum TripStatus {
-  ACTIVE = "active",
-  STALLED = "stalled",
-  CANCELLED = "cancelled",
-  COMPLETED = "completed",
-  }
-
-  export interface Trip {
-  id: string;
-  created_at: Date;
-  updated_at: Date;
-  source: Coordinate;
-  destination: Coordinate;
-  location: Coordinate;
-  status: TripStatus;
-  robot: Robot;
-  }
-
+  
   export interface Merchant {
   id: string;
   name: string;
-  location: Coordinate;
+  location?: Coordinate;
   address: string;
   }
 
@@ -49,7 +51,7 @@
   id: string;
   name: string;
   phone_number: string;
-  location: Coordinate;
+  location?: Coordinate;
   address: string;
   }
 

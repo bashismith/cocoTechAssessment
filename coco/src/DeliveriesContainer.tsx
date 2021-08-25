@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef } from 'react';
 import Delivery from './Delivery';
-import { ApiResponse } from './TypesAndInterfaces';
+//import Customers from './Customers'
 
 
 const DeliveriesContainer = () => {
